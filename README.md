@@ -43,9 +43,12 @@ xmlCopy<?xml version="1.0"?>
         </sequence>
     </module>
 </config>
+```
+
 This file declares your module, its version, and any dependencies it has on other modules.
 2.3 etc/frontend/events.xml
-xmlCopy<?xml version="1.0"?>
+```xml
+<?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="catalog_controller_product_view">
         <observer name="log_product_view" instance="ObserverExample\Observer\LogProductView" />
@@ -65,7 +68,8 @@ xmlCopy<?xml version="1.0"?>
 
 This file is used for dependency injection configuration. In this case, we're passing a name argument to our Logger model.
 2.5 Observer/LogProductView.php
-phpCopy<?php
+```xml
+<?php
 namespace ObserverExample\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
@@ -89,9 +93,11 @@ class LogProductView implements ObserverInterface
         }
     }
 }
+```
 This is the actual observer class. It implements the ObserverInterface and defines what should happen when the observed event occurs.
-2.6 Model/Logger.php
-phpCopy<?php
+2.6 `Model/Logger.php`
+```php
+<?php
 namespace ObserverExample\Model;
 
 use Psr\Log\LoggerInterface;
@@ -112,15 +118,19 @@ class Logger
         $this->logger->info($this->name . ': ' . $message);
     }
 }
+```
 This is a simple logger class that we'll use to log product views.
-2.7 view/frontend/templates/product_view_log.phtml
-phpCopy<?php
+2.7 `view/frontend/templates/product_view_log.phtml`
+```php
+<?php
 /** @var \Magento\Framework\View\Element\Template $block */
 /** @var \Magento\Framework\Escaper $escaper */
 ?>
 <div class="product-view-log">
     <p>Product view has been logged.</p>
 </div>
+```
+
 This is a simple template file that could be used to display a message on the product page indicating that the view has been logged.
 3. How Observers Work
 
